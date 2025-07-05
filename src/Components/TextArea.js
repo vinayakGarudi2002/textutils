@@ -111,6 +111,22 @@ const TextArea = (props) => {
         Copy
       </button>}
 
+      <button
+        className="btn btn-primary mx-2 my-2"
+        onClick={() => {
+          if(textState.replace(/\s+/g, " ").trim().length>0){
+            const wordCount = textState.split(/\s+/).filter((e)=>{
+              return e.length!==0
+            }).length;
+            props.showAlert("success", `Number of words: ${wordCount}`);
+          }else{
+            props.showAlert("warning", "Enter Text");
+          }
+        }}
+      >
+        Number of Words
+      </button>
+
       <h2>Your text Summary</h2>
       <p className="container">
         {textState.replace(/\s+/g, " ").trim().length} no. of characters and {textState.split(/\s+/).filter((e)=>{
